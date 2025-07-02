@@ -4,6 +4,9 @@
     const toSettings = () => {
         goto("/settings")
     }
+    const toLabMenu = () => {
+        goto("/lab-menu")
+    }
 </script>
 
 
@@ -19,7 +22,7 @@
                 <h1 class="header kanit" style="font-size: 48px; color: #333333; font-weight: 500">Prelab - ปฏิบัติการทดลองแลปวิชาเคมี</h1>
                 <p class="paragraph sarabun" style="font-size: 24px; color: #707070; font-weight: 400; text-align: center">เกมจำลองการทดลองเคมีช่วยเสริมความเข้าใจและเตรียมความพร้อม <br>ก่อนทดลองจริง</p>
 
-                <button class="play-button kanit" style="font-size: 32px; font-weight: 500">เล่น</button>
+                <button on:click={toLabMenu} class="play-button kanit" style="font-size: 32px; font-weight: 500">เล่น</button>
             </div>
         </div>
 
