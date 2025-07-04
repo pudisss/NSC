@@ -1,71 +1,16 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
+    import { labsData } from "../../data/LabData";
 
+    const goBack = () => {
+        history.back()
+    }
 
-const goBack = () => {
-    history.back()
-}
+    const goSetting = () => goto("/settings")
 
-const goSetting = () => goto("/settings")
-
-// Imagine data
-const labsData = [
-    {
-        done: true,
-        name: "การทดลองครั้งที่ 1",
-        level: "4",
-        stars: 2,
-    },
-    {
-        done: false,
-        name: "การทดลองครั้งที่ 2",
-        level: "5",
-        stars: 2,
-    },
-    {
-        done: false,
-        name: "การทดลองครั้งที่ 3",
-        level: "5",
-        stars: 2,
-    },
-    {
-        done: true,
-        name: "การทดลองครั้งที่ 4",
-        level: "4",
-        stars: 2,
-    },
-    {
-        done: false,
-        name: "การทดลองครั้งที่ 5",
-        level: "6",
-        stars: 2,
-    },
-    {
-        done: false,
-        name: "การทดลองครั้งที่ 6",
-        level: "6",
-        stars: 2,
-    },
-    {
-        done: false,
-        name: "การทดลองครั้งที่ 7",
-        level: "4",
-        stars: 2,
-    },
-    {
-        done: true,
-        name: "การทดลองครั้งที่ 8",
-        level: "5",
-        stars: 2,
-    },
-    {
-        done: true,
-        name: "การทดลองครั้งที่ 9",
-        level: "6",
-        stars: 2,
-    },
-
-]
+    const goToLab = (id: string) => {
+        goto("/game/"+id)
+    }
 
     // Variable
     let selectedOption = $state("")
@@ -108,7 +53,7 @@ const labsData = [
                     {#if selectedOption == ""}
 
                         {#each labsData as data, id}
-                            <div class="container">
+                            <div class="container" on:click={() => goToLab(data.id.toString())}>
                                 {#if data.done}
                                     <img src="./done.svg" alt="" class="done-image">
                                     {:else}
@@ -280,7 +225,7 @@ const labsData = [
 
                         .container {
                             width: 100%;
-                            
+                            cursor: pointer;
                             padding: 15px;
                             display: flex;
                             flex-flow: row nowrap;
