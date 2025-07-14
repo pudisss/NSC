@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-    import { labsData } from "../../data/LabData";
+    import { labsData } from "../../lib/data/LabData";
 
     const goBack = () => {
         history.back()
@@ -25,11 +25,11 @@
     <div class="wrapper">
         <div class="flex-container">
             <div class="button-row">
-                <button class="back" on:click={goBack}>
-                    <img src="./back.svg" alt="" class="back-icon">
+                <button class="back" on:click={() => goto("/")}>
+                    <img src="./assets/back.svg" alt="" class="back-icon">
                 </button>
                 <button class="settings" on:click={goSetting}>
-                    <img src="./settings.svg" alt="" class="settings-icon">
+                    <img src="./assets/settings.svg" alt="" class="settings-icon">
                 </button>
             </div>
 
@@ -55,15 +55,15 @@
                         {#each labsData as data, id}
                             <div class="container" on:click={() => goToLab(data.id.toString())}>
                                 {#if data.done}
-                                    <img src="./done.svg" alt="" class="done-image">
+                                    <img src="./assets/done.svg" alt="" class="done-image">
                                     {:else}
-                                        <img src="./undone.svg" alt="" class="undone-image">
+                                        <img src="./assets/undone.svg" alt="" class="undone-image">
                                 {/if}
                                 <h3 class="lab-name kanit" style="font-size: 24px; font-weight: 400;">LAB {id}: {data.name}</h3>
                                 <h3 class="level kanit" style="font-size: 24px; font-weight: 400; color: #00AAFF">ชั้นมัธยมศึกษาปีที่ {data.level}</h3>
                                 <div class="stars">
                                     {#each Array.from({ length: data.stars }) as _, i}
-                                        <img src="./star.svg" alt="" class="rate">
+                                        <img src="./assets/star.svg" alt="" class="rate">
                                     {/each}
                                 </div>
 

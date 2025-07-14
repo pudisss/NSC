@@ -9,7 +9,7 @@
         <div class="flex-container">
             <button class="back" on:click={goBack}>
                 
-                    <img src="./back.svg" alt="" class="back-icon">
+                    <img src="./assets/back.svg" alt="" class="back-icon">
                 
             </button>
             <div class="container">
@@ -20,11 +20,11 @@
 
                     <form action="" class="settings">
                         <div class="volumn">
-                            <img src="./volumn.svg" alt="" class="volumn-icon">
+                            <img src="./assets/volumn.svg" alt="" class="volumn-icon">
                             <input type="range" id="volumn" min="0" max="1" step="0.1">
                         </div>
                         <div class="music">
-                            <img src="./music.svg" alt="" class="music-icon">
+                            <img src="./assets/music.svg" alt="" class="music-icon">
                             <input type="range" id="music" min="0" max="1" step="0.1">
                         </div>
                     </form>
