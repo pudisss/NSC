@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { PageServerData } from "./$types"
-  import { labsData } from "../../../data/LabData";
+  import { labsData } from "../../../lib/data/LabData";
+	import { goto } from "$app/navigation";
 
   export let data: PageServerData;
  
@@ -17,16 +18,16 @@
 
 <section class="main-section">
   <div class="backdrop"></div>
-  <img src="/experimental.jpg" alt="" class="image">
+  <img src="/assets/experimental.jpg" alt="" class="image">
   <div class="wrapper">
     <button class="back-button" on:click={goBack}>
-      <img src="/door.svg" alt="" class="back">
+      <img src="/assets/door.svg" alt="" class="back">
     </button>
     <div class="text-section">
       <h1 class="header kanit" style="font-size: 128px; font-weight: 600;">การทดลอง</h1>
       <h3 class="subheader sarabun" style="font-size: 32px; font-weight: 400">อัตราการเกิดปฏิกิริยาจากปัจจัยต่างๆ</h3>
 
-      <button class="play-button kanit">
+      <button class="play-button kanit" on:click={() => goto(`/game/${id}/tools`)}>
         ต่อไป
       </button>
     </div>

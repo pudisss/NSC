@@ -15,7 +15,7 @@
         <div class="flex-container">
             <button class="settings" on:click={toSettings}>
                 
-                    <img src="./settings.svg" alt="" class="settings-icon">
+                    <img src="./assets/settings.svg" alt="" class="settings-icon">
                 
             </button>
             <div class="text-section">
