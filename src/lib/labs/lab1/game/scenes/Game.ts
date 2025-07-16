@@ -347,6 +347,7 @@ export default class Game extends Phaser.Scene {
 
 		// Update these independent factors
 		this.boiled = true;
+		if (this.boiled) this.beaker.setTexture("boilwater");
 		this.shouldUpdateTimer = false;
 
 		// Remove fire
@@ -605,6 +606,7 @@ export default class Game extends Phaser.Scene {
 					`ต้มนํ้าโดยใช้เวลา ${countdownTimeSec} วินาที`, 
 					this.PRIORITY_LEVELS.BOILING
 				);
+				this.beaker.setTexture("beaker_water")
 				this.hasShownBoilInstruction = true;
 				this.updateWaterFinished = true;
 				this.triggerActivatedWaterBot = true;

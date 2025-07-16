@@ -59,7 +59,7 @@
                                     {:else}
                                         <img src="./assets/undone.svg" alt="" class="undone-image">
                                 {/if}
-                                <h3 class="lab-name kanit" style="font-size: 24px; font-weight: 400;">LAB {id}: {data.name}</h3>
+                                <h3 class="lab-name kanit" style="font-size: 24px; font-weight: 400;">LAB {data.id+1}: {data.name}</h3>
                                 <h3 class="level kanit" style="font-size: 24px; font-weight: 400; color: #00AAFF">ชั้นมัธยมศึกษาปีที่ {data.level}</h3>
                                 <div class="stars">
                                     {#each Array.from({ length: data.stars }) as _, i}
@@ -83,11 +83,11 @@
                                         {:else}
                                             <img src="./assets/undone.svg" alt="" class="undone-image">
                                     {/if}
-                                    <h3 class="lab-name kanit" style="font-size: 24px; font-weight: 400;">LAB {id}: {data.name}</h3>
+                                    <h3 class="lab-name kanit" style="font-size: 24px; font-weight: 400;">LAB {data.id+1}: {data.name}</h3>
                                     <h3 class="level kanit" style="font-size: 24px; font-weight: 400; color: #00AAFF">ชั้นมัธยมศึกษาปีที่ {data.level}</h3>
                                     <div class="stars">
                                         {#each Array.from({ length: data.stars }) as _, i}
-                                            <img src="./star.svg" alt="" class="rate">
+                                            <img src="./assets/star.svg" alt="" class="rate">
                                         {/each}
                                     </div>
 
@@ -151,10 +151,17 @@
                         border: none;
                         transition: 0.2s ease-in;
                         cursor: pointer;
-                        
+                        border: 2px solid white;
+                        transition: 0.15s ease-out;
+
+                        &:hover {
+                            border-color: #FFCB66;
+                        }
 
                         
                     }
+
+                   
 
                     .settings {
                         
@@ -166,6 +173,12 @@
                         border: none;
                         transition: 0.2s ease-in;
                         cursor: pointer;
+                        border: 2px solid white;
+                        transition: 0.15s ease-out;
+
+                        &:hover {
+                            border-color: #FFCB66;
+                        }
 
                     }
                 }

@@ -7,6 +7,16 @@
                 "key": "beaker"
             },
             {
+                "url": "/assets/lab-asset/lab1/Bigger_Water.png",
+                "type": "image",
+                "key": "beaker_water"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/boilwater.png",
+                "type": "image",
+                "key": "boilwater"
+            },
+            {
                 "url": "/assets/lab-asset/lab1/benadic.png",
                 "type": "image",
                 "key": "benadic"
