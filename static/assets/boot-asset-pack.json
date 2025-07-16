@@ -1,0 +1,109 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "/assets/lab-asset/lab1/beaker.png",
+                "type": "image",
+                "key": "beaker"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/benadic.png",
+                "type": "image",
+                "key": "benadic"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/benedic_0.png",
+                "type": "image",
+                "key": "benedic_0"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/benedic_1.png",
+                "type": "image",
+                "key": "benedic_1"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/benedic_2.png",
+                "type": "image",
+                "key": "benedic_2"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/benedic_3.png",
+                "type": "image",
+                "key": "benedic_3"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/benedic_4.png",
+                "type": "image",
+                "key": "benedic_4"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/Biger.png",
+                "type": "image",
+                "key": "Biger"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/Bigger_Water.png",
+                "type": "image",
+                "key": "Bigger_Water"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/boilwater.png",
+                "type": "image",
+                "key": "boilwater"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/dropper.png",
+                "type": "image",
+                "key": "dropper"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/fire.png",
+                "type": "image",
+                "key": "fire"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/fire-button.png",
+                "type": "image",
+                "key": "fire-button"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/lab-background.jpg",
+                "type": "image",
+                "key": "lab-background"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/Syrub.png",
+                "type": "image",
+                "key": "Syrub"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/table.jpg",
+                "type": "image",
+                "key": "table"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/tube.png",
+                "type": "image",
+                "key": "tube"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/tube_Syrub.png",
+                "type": "image",
+                "key": "tube_Syrub"
+            },
+            {
+                "url": "/assets/lab-asset/lab1/Water.png",
+                "type": "image",
+                "key": "Water"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false,
+        "visible": true
+    }
+}

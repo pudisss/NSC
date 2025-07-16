@@ -1,0 +1,82 @@
+{
+    "id": "fe9dec0b-9530-4ff6-a5a1-14fb1c57bb41",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "Game",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "borderWidth": 1024,
+        "borderHeight": 768
+    },
+    "displayList": [
+        {
+            "type": "Image",
+            "id": "2addce60-2747-4195-97e7-141f9a004935",
+            "label": "lab_background",
+            "texture": {
+                "key": "lab-background"
+            },
+            "x": 546,
+            "y": 374
+        },
+        {
+            "type": "Image",
+            "id": "110806c0-356d-4e90-bf05-1f18d888dc58",
+            "label": "table",
+            "texture": {
+                "key": "table"
+            },
+            "x": 547,
+            "y": 724
+        },
+        {
+            "type": "Image",
+            "id": "f162b118-bd19-4c4a-b523-4220d7c5ae64",
+            "label": "tubes",
+            "texture": {
+                "key": "tubes"
+            },
+            "x": 378,
+            "y": 438,
+            "scaleX": 0.4939236387471173,
+            "scaleY": 0.8120981952449916
+        },
+        {
+            "type": "Image",
+            "id": "f836fd7f-38a4-4fde-95de-9b0feebfde5f",
+            "label": "tubes_1",
+            "texture": {
+                "key": "tubes"
+            },
+            "x": 531,
+            "y": 435,
+            "scaleX": 0.4939236387471173,
+            "scaleY": 0.8120981952449916
+        },
+        {
+            "type": "Image",
+            "id": "f65936e4-317a-448e-9f3d-0fce3f79902b",
+            "label": "syrup_bottle_menu_restaurant_cartoon_food_cute_vector_29434749_removebg_preview_1",
+            "hitArea.shape": "RECTANGLE",
+            "hitArea.width": 371,
+            "hitArea.height": 400,
+            "texture": {
+                "key": "syrup-bottle-menu-restaurant-cartoon-food-cute-vector-29434749-removebg-preview 1"
+            },
+            "x": 109,
+            "y": 510,
+            "scaleX": 0.6084856357294978,
+            "scaleY": 0.6714020361570918
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}

@@ -69,9 +69,9 @@
             let resultPercentage = (score / questions.length);
 
             if (resultPercentage < scorePercentage) {
-                goto("/quiz/"+id+"/fail")
+                goto(`/quiz/${id}/fail?score=${score}&questionLength=${questions.length}`)
             } else {
-                goto("/quiz/"+id+"/pass")
+                goto(`/quiz/${id}/pass?score=${score}&questionLength=${questions.length}`)
             }
             
 

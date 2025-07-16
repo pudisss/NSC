@@ -22,7 +22,7 @@
             <button class="back-button" on:click={() => history.back()}>
                 <img src="/assets/back-arrow.svg" alt="" class="back-icon">
             </button>
-            <button class="forward-button">
+            <button class="forward-button" on:click={() => goto(`/game/${id}/gameplay`)}>
                 <img src="/assets/forward.svg" alt="" class="forward-icon">
             </button>
         </div>
