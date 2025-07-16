@@ -3,8 +3,17 @@
     import { goto } from "$app/navigation";
 	
     import type { PageServerData } from "./$types";
+    import { labsData } from "$lib/data/LabData";
 
     export let data: PageServerData;
+
+    const { score, questionLength, id } = data;
+
+    const selectedLab = labsData.filter((d) => d.id == Number(id))[0];
+
+
+    // When pass the exam the lab is done
+    selectedLab["done"] = true;
     const goBack = () => history.back();
 </script>
 
@@ -19,6 +28,7 @@
         <div class="container">
             <h1 class="header kanit" style="font-size: 96px; font-weight: 500; color: #2E7D32;">คุณผ่านการทดสอบ</h1>
 
+            <h3 class="score kanit">คุณได้ {score}/{questionLength} คะแนน</h3>
             
             <button class="to-menu" on:click={() => goto("/lab-menu")}>เมนู</button>
             

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
     import type { PageServerData } from "./$types";
     import { onMount } from "svelte";
 
@@ -117,7 +118,7 @@
 
 <section class="main-section">
     <div class="wrapper">
-        <button class="back-button">
+        <button class="back-button" on:click={() => history.back()}>
             <img src="/assets/back-arrow.svg" alt="" class="back-icon">
         </button>
 

@@ -79,9 +79,9 @@
                             {#each filtered as data, id}
                                 <div class="container">
                                     {#if data.done}
-                                        <img src="./done.svg" alt="" class="done-image">
+                                        <img src="./assets/done.svg" alt="" class="done-image">
                                         {:else}
-                                            <img src="./undone.svg" alt="" class="undone-image">
+                                            <img src="./assets/undone.svg" alt="" class="undone-image">
                                     {/if}
                                     <h3 class="lab-name kanit" style="font-size: 24px; font-weight: 400;">LAB {id}: {data.name}</h3>
                                     <h3 class="level kanit" style="font-size: 24px; font-weight: 400; color: #00AAFF">ชั้นมัธยมศึกษาปีที่ {data.level}</h3>
