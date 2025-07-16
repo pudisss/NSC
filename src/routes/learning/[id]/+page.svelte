@@ -3,7 +3,7 @@
     import type { PageServerData } from "./$types";
     import { onMount } from "svelte";
 
-    let videoId = 'kgdpC2GjQt4'
+    let videoId = '1IkovxaOYjA'
     let player: YT.Player;
     let isPlaying: boolean = false;
     let progress: number = 0;

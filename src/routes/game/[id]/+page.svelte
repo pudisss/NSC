@@ -54,13 +54,19 @@
         width: 100px;
         height: 100px;
         background-color: white;
-        border: none;
+       
         border-radius: 35px;
         cursor: pointer;
         position: absolute;
         top: 0;
         left: 0;
         margin: 1rem;
+        border: 3px solid white;
+        transition: 0.15s ease-out;
+
+        &:hover {
+            border-color: #FFCB66;
+        }
 
       }
 

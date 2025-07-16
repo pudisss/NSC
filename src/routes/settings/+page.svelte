@@ -62,9 +62,14 @@
                     height: 100px;
                     border-radius: 35px;
                     background-color: #FFFFFF;
-                    border: none;
-                    transition: 0.2s ease-in;
+                    
                     cursor: pointer;
+                    border: 2px solid white;
+                    transition: 0.15s ease-out;
+
+                    &:hover {
+                        border-color: #FFCB66;
+                    }
                     
 
                     
