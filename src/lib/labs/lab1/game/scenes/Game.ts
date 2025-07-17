@@ -96,10 +96,19 @@ export default class Game extends Phaser.Scene {
 	private boiled: boolean = false;
 	private shouldUpdateTimer: boolean = false;
 
+	// Sound effects
+	private dragSound!: Phaser.Sound;
+	private levelUpSound!: Phaser.Sound;
+
 
 	preload() {
 		this.load.pack('boot-pack', '/assets/boot-asset-pack.json');
-  		
+
+		// Load sound effect
+		this.load.audio("drag-sound", "/assets/lab-asset/lab1/soundeffect/drag-soundeffect.mp3");
+  		this.load.audio("water-filling", "/assets/lab-asset/lab1/soundeffect/water-filling.mp3");
+		this.load.audio("level-up", "/assets/lab-asset/lab1/soundeffect/levelup.mp3");
+		this.load.audio("success", "/assets/lab-asset/lab1/soundeffect/success.mp3")
 	}
 	constructor() {
 		super("Game");
@@ -237,12 +246,19 @@ export default class Game extends Phaser.Scene {
 		this.progressBarTube2.setVisible(false);
 
 
-		
+		// Sound effect
+		this.dragSound = this.sound.add("drag-sound")
+		this.levelUpSound = this.sound.add("level-up")
 
 
 		// Dragging behavior
 		this.input.on('dragstart', (pointer, gameObject) => {
 			this.currentDraggedObject = gameObject;
+			this.dragSound.play({
+				volumn: 1,
+				loop: false,
+
+			})
 		});
 		this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
 			gameObject.x = dragX;
@@ -338,6 +354,7 @@ export default class Game extends Phaser.Scene {
 		this.shouldUpdateReactionTimer = false;
 
 		// Send the signal that the lab is finished.
+		this.sound.play("success");
 		EventBus.emit("lab-completed", {
 			success: true,
 		})
@@ -454,6 +471,7 @@ export default class Game extends Phaser.Scene {
 
 				const newColor = this.reactionColors[this.reactionStep];
 				console.log("Update color to:", newColor);
+				this.levelUpSound.play()
 
 				this.selectedTubeForReaction.setTexture(newColor);
 			}
