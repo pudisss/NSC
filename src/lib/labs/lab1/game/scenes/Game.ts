@@ -208,6 +208,7 @@ export default class Game extends Phaser.Scene {
 		this.instructionText = this.add.text(this.scale.width / 2, 150, 'ใส่น้ำเชื่อม(C₁₂H₂₂O₁₁) ปริมาณ 5 มิลลิลิตร (mL) ลงในหลอดทดลองทั้ง 2 หลอด', {
             fontSize: '24px',
             color: '#000000',
+			fontFamily: "Kanit",
 			fontStyle: "bold",
             padding: { x: 20, y: 10 },
 			align: "center"
@@ -493,9 +494,15 @@ export default class Game extends Phaser.Scene {
 	};
 
 	// Method to set instruction text with priority
-	private setInstructionText(text: string, priority: number = 0, force: boolean = false): void {
+	private setInstructionText(text: string, priority: number = 0, force: boolean = false, fontSize?: string): void {
 		if (force || priority >= this.currentInstructionPriority) {
 			this.instructionText.setText(text);
+			if (fontSize !== undefined) {
+				this.instructionText.setFontSize(fontSize)
+			} else {
+				this.instructionText.setFontSize("24px") // Set to default for other text
+			}
+
 			this.currentInstructionPriority = priority;
 		}
 	}
@@ -782,12 +789,14 @@ export default class Game extends Phaser.Scene {
 
 			if (this.dropperFilled) {
 				this.setInstructionText(
-					`ใช้ดรอปเปอร์หยดสารละลายเบเนดิกซ์ (สูตรเคมีเหมือนเดิม) ลงในหลอดการทดลองทั้ง 2 หลอด 
+					`ใช้ดรอปเปอร์หยดสารละลายเบเนดิกซ์ (CuSO₄·5H₂O) ลงในหลอดการทดลองทั้ง 2 หลอด 
 					ด้วยปริมาณ 3 มิลลิลิตร (mL) เเละสังเกตสีที่เปลี่ยนไปในหลอดทดลอง
 
 					หมายเหตุ: *** เมื่อหยดสารละลายเบเนดิกซ์ลงในหลอดทดลองที่ 1 เเล้วจำเป็นต้องใช้ดรอปเปอร์ดูดสารละลายเบเนดิกซ์อีกครั้ง 
 					เพื่อหยดลงในหลอดการทดลองที่ 2 ***`, 
-					this.PRIORITY_LEVELS.BENEDICT_ADDING
+					this.PRIORITY_LEVELS.BENEDICT_ADDING,
+					false, 
+					"16px"
 				);
 			} else {
 				this.setInstructionText(
@@ -795,7 +804,9 @@ export default class Game extends Phaser.Scene {
 
 					หมายเหตุ: *** เมื่อหยดสารละลายเบเนดิกซ์ลงในหลอดทดลองที่ 1 เเล้วจำเป็นต้องใช้ดรอปเปอร์ดูดสารละลายเบเนดิกซ์อีกครั้ง 
 					เพื่อหยดลงในหลอดการทดลองที่ 2 ***`, 
-					this.PRIORITY_LEVELS.BENEDICT_PREPARATION
+					this.PRIORITY_LEVELS.BENEDICT_PREPARATION,
+					false,
+					"16px"
 				);
 			}
 			

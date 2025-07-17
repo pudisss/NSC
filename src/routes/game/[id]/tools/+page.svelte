@@ -22,6 +22,7 @@
             <button class="back-button" on:click={() => history.back()}>
                 <img src="/assets/back-arrow.svg" alt="" class="back-icon">
             </button>
+            <h1 class="header kanit" style="font-size:36px; font-weight: 600">อุปกรณ์ที่ใช้ในการทดลอง</h1>
             <button class="forward-button" on:click={() => goto(`/game/${id}/gameplay`)}>
                 <img src="/assets/forward.svg" alt="" class="forward-icon">
             </button>
