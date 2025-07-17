@@ -205,10 +205,12 @@ export default class Game extends Phaser.Scene {
 
 
 		// Instruction text
-		this.instructionText = this.add.text(this.scale.width / 2, 50, 'ใส่น้ำเชื่อม(C₁₂H₂₂O₁₁) 5 mL ใส่ลงในหลอดทดลองทั้งสองหลอด', {
-            fontSize: '32px',
+		this.instructionText = this.add.text(this.scale.width / 2, 150, 'ใส่น้ำเชื่อม(C₁₂H₂₂O₁₁) ปริมาณ 5 มิลลิลิตร (mL) ลงในหลอดทดลองทั้ง 2 หลอด', {
+            fontSize: '24px',
             color: '#000000',
-            padding: { x: 20, y: 10 }
+			fontStyle: "bold",
+            padding: { x: 20, y: 10 },
+			align: "center"
         }).setOrigin(0.5);
 
 		
@@ -517,7 +519,10 @@ export default class Game extends Phaser.Scene {
 			
 			if (this.triggerActivatedWaterBot && this.hasShownBoilInstruction && this.updateWaterFinished && this.boiled && !this.reactionFinished) {
 				this.clearInstructionPriority();
-				this.setInstructionText("วางหลอดทดลองลงในบีกเกอร์เพื่อเริ่มปฏิกิริยา", this.PRIORITY_LEVELS.TUBE_REACTION);
+				this.setInstructionText(`นำหลอดทดลองที่ 1 นำไปวางในบีกเกอร์ที่มีน้ำอุณหภูมิอุ่น เเละนำหลอดทดลองที่ 2 ไว้ในอุณหภูมิห้อง 
+					เพื่อเริ่มดูเเละศึกษาปฏิกิริยาหลังจากเวลาผ่านไปให้สังเกตสีของหลอดทดลองที่ 1 เเละ 2 
+
+					หมายเหตุ: จะใช้หลอดทดลองใดเป็นหลอดทดลองที่ 1 ก็ได้และอีกอันที่ไม่ได้นำไปวางในบีกเกอร์ให้เป็นหลอดทดลองที่ 2`, this.PRIORITY_LEVELS.TUBE_REACTION);
 			}
 
 			const tube1InsideBeaker = Phaser.Geom.Rectangle.ContainsPoint(this.beakerDropZone, this.tube1);
@@ -564,7 +569,7 @@ export default class Game extends Phaser.Scene {
 		// Check if the tube is filled with benedict solution?
 		if (!this.beakerFilled) {
 			if (this.triggerActivatedDropper && !this.timerActive) {
-				this.setInstructionText("เติมนํ้าลงในบีกเกอร์ 200 ml", this.PRIORITY_LEVELS.WATER_FILLING);
+				this.setInstructionText("เติมน้ำลงในบีกเกอร์เปล่าปริมาณ 200 มิลลิลิตร (mL)", this.PRIORITY_LEVELS.WATER_FILLING);
 			}
 			// Check for touching both ones
 			if ((this.currentDraggedObject === this.waterBottle) && bottleInsideBeaker) {
@@ -777,12 +782,19 @@ export default class Game extends Phaser.Scene {
 
 			if (this.dropperFilled) {
 				this.setInstructionText(
-					"หยดสารละลายเบเนดิกซ์(CuSO₄·5H₂O)ในหลอดการทดลอง 3 ml", 
+					`ใช้ดรอปเปอร์หยดสารละลายเบเนดิกซ์ (สูตรเคมีเหมือนเดิม) ลงในหลอดการทดลองทั้ง 2 หลอด 
+					ด้วยปริมาณ 3 มิลลิลิตร (mL) เเละสังเกตสีที่เปลี่ยนไปในหลอดทดลอง
+
+					หมายเหตุ: *** เมื่อหยดสารละลายเบเนดิกซ์ลงในหลอดทดลองที่ 1 เเล้วจำเป็นต้องใช้ดรอปเปอร์ดูดสารละลายเบเนดิกซ์อีกครั้ง 
+					เพื่อหยดลงในหลอดการทดลองที่ 2 ***`, 
 					this.PRIORITY_LEVELS.BENEDICT_ADDING
 				);
 			} else {
 				this.setInstructionText(
-					"ดูดสารละลายเบเนดิกซ์(CuSO₄·5H₂O)จากโหล 3 ml", 
+					`ใช้ดรอปเปอร์ดูดสารละลายเบเนดิกซ์ (CuSO₄·5H₂O) จากกรวยรูปชมพู่ปริมาณ 3 มิลลิลิตร (mL)
+
+					หมายเหตุ: *** เมื่อหยดสารละลายเบเนดิกซ์ลงในหลอดทดลองที่ 1 เเล้วจำเป็นต้องใช้ดรอปเปอร์ดูดสารละลายเบเนดิกซ์อีกครั้ง 
+					เพื่อหยดลงในหลอดการทดลองที่ 2 ***`, 
 					this.PRIORITY_LEVELS.BENEDICT_PREPARATION
 				);
 			}

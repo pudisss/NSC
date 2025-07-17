@@ -47,7 +47,7 @@
     <div class="lab-finished-overlay" class:hidden={!labCompleted}>
         <div class="container">
             <h1 class="header kanit" style="font-size: 96px; font-weight: 500">ยินดีด้วย</h1>
-            <h3 class="sub-header kanit" style="font-size: 36px; font-weight: 400">คุณสำเร็จการทำแลปแล้ว<br>ทดสอบความรู้ของคุณ</h3>
+            <h3 class="sub-header kanit" style="font-size: 36px; font-weight: 400; text-align: center;">คุณสำเร็จการทำแลปแล้ว<br>ทดสอบความรู้ของคุณ</h3>
 
             <button class="quiz-button kanit" style="font-size: 1rem; font-weight: 400; margin-top: 2rem;" on:click={() => goto(`/quiz/${id}`)}>
                 quiz
