@@ -1,5 +1,8 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
+    import type { PageServerData } from "./$types";
+
+    export let data: PageServerData;
 
     const toSettings = () => {
         goto("/settings")
@@ -18,6 +21,19 @@
                     <img src="./assets/settings.svg" alt="" class="settings-icon">
                 
             </button>
+
+            {#if !data.user}
+                <div class="button-row">
+                    <button class="student kanit" on:click={() => goto("/user/student")}>นักเรียน</button>
+                    <button class="teacher kanit" on:click={() => goto("/user/teacher")}>คุณครู</button>
+                </div>
+
+                {:else }
+                    <div class="button-row" data-sveltekit-preload-data>
+                        <button class="dashboard kanit" on:click={() => goto("/dashboard")}>Dashboard</button>
+                    </div>
+                    
+            {/if}
             <div class="text-section">
                 <h1 class="header kanit" style="font-size: 48px; color: #333333; font-weight: 500">Prelab - ปฏิบัติการทดลองแลปวิชาเคมี</h1>
                 <p class="paragraph sarabun" style="font-size: 24px; color: #707070; font-weight: 400; text-align: center">เกมจำลองการทดลองเคมีช่วยเสริมความเข้าใจและเตรียมความพร้อม <br>ก่อนทดลองจริง</p>
@@ -46,6 +62,32 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+
+                .button-row {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 1rem;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    margin: 1rem;
+
+                    button {
+                        padding: 0.5rem 1rem;
+                        border-radius: 7px;
+                        border: 2px solid white;
+                        background-color: white;
+                        transition: 0.15s ease-out;
+                        cursor: pointer;
+
+                        &:hover {
+                            border-color: #FFCB66;
+                        }
+
+                    }
+                }
+                
 
                 .settings {
                     position: absolute;

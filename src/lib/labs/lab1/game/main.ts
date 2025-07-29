@@ -1,5 +1,5 @@
 
-import MainGame from './scenes/Game';
+import MainGame from './scenes/Lab1Scene';
 
 import { AUTO, Game } from 'phaser';
 
