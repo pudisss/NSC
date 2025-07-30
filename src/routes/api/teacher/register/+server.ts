@@ -1,6 +1,6 @@
 
 import bcrypt from 'bcryptjs';
-import { Teachers } from '$lib/db/models/Teacher';
+import Teachers from '$lib/db/models/Teacher';
 import jwt from 'jsonwebtoken';
 import { serialize } from 'cookie';
 import { json } from '@sveltejs/kit';

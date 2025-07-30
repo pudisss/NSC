@@ -1,7 +1,7 @@
 
 import { json } from '@sveltejs/kit';
 import bcrypt from 'bcryptjs';
-import { Teachers } from '$lib/db/models/Teacher';
+import Teachers from '$lib/db/models/Teacher';
 import '$lib/db/db';
 import { JWT_TOKEN } from "$env/static/private";
 import jwt from "jsonwebtoken";
@@ -12,7 +12,7 @@ export const POST = async ({ request }) => {
 
 	const user = await Teachers.findOne({ email });
 	if (!user || !(await bcrypt.compare(password, user.password))) {
-		return json({ error: 'Invalid email or password' }, { status: 401 });
+		return json({ error: 'Invalid email or password', success: false }, { status: 401 });
 	}
 	console.log("Teacher Login")
 

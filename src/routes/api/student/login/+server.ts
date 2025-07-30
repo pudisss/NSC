@@ -5,8 +5,8 @@ import '$lib/db/db';
 import { JWT_TOKEN } from "$env/static/private";
 import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
-import { Students } from '$lib/db/models/Students';
-import { Teachers } from '$lib/db/models/Teacher';
+import Teachers from '$lib/db/models/Teacher';
+import Students from '$lib/db/models/Students';
 
 export const POST = async ({ request }) => {
     const { email, password }: { email: string, password: string } = await request.json();

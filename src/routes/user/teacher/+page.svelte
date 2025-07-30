@@ -26,10 +26,11 @@
         
 
 		const data = await res.json();
-		output.message = data.message;
-        output.process = "login"
-        output.finished = true;
-
+        output.finished = data.success;
+        output.process = "login";
+        output.message = data.message;
+        
+		console.log(data);
         goto("/");
     }
     const register = async() => {
@@ -41,10 +42,12 @@
 		});
 
 		const data = await res.json();
-        output.message = data.message;
+        output.finished = data.success;
         output.process = "register";
+        output.message = data.message;
         output.roomId = data.roomId;
-        output.finished = true;
+
+        
 
         
     }

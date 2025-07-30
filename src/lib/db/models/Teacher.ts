@@ -21,4 +21,7 @@ const TeachersSchema = new mongoose.Schema<ITeacher>({
 });
 
 
-export const Teachers: Model<ITeacher> = mongoose.models.Teacher || mongoose.model<ITeacher>('Teachers', TeachersSchema);
+// Reuse existing model if it exists, otherwise create a new one
+const Teachers: Model<ITeacher> = mongoose.models.Teachers || mongoose.model<ITeacher>('Teachers', TeachersSchema);
+
+export default Teachers;

@@ -1,7 +1,7 @@
 import { json } from "@sveltejs/kit"
 import bcrypt from 'bcryptjs';
-import { Students } from '$lib/db/models/Students';
-import { Teachers } from "$lib/db/models/Teacher.js";
+import Students from "$lib/db/models/Students";
+import Teachers from "$lib/db/models/Teacher";
 import '$lib/db/db';
 
 export const POST = async ({ request }) => {
