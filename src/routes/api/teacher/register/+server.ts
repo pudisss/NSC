@@ -14,7 +14,7 @@ export const POST  = async ({ request }) => {
 	
 	const existingUser = await Teachers.findOne({ email });
 	if (existingUser) {
-		return json({ error: 'User already exists' }, { status: 400 });
+		return json({ error: 'User already exists', success: false, process:"register" }, { status: 400 });
 	}
 
 	const hashedPassword = await bcrypt.hash(password, 10);
@@ -28,7 +28,7 @@ export const POST  = async ({ request }) => {
 		expiresIn: '7d',
 	});
 
-	return new Response(JSON.stringify({ success: true, message: `Register successful.`, roomId: roomIdGen }), {
+	return new Response(JSON.stringify({ success: true, message: `Register successful.`, roomId: roomIdGen, process: "register" }), {
 		status: 200,
 		headers: {
 			'Set-Cookie': serialize('token', token, {

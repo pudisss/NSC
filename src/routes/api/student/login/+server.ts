@@ -14,14 +14,21 @@ export const POST = async ({ request }) => {
 
     const user = await Students.findOne({ email: email });
 
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-        return json({ error: 'Invalid email or password' }, { status: 401 });
+    if (!user) {
+       
+        return json({ error: 'User not found', success: false, process: "login" }, { status: 401 });
     }
+
+    if (!(await bcrypt.compare(password, user.password))) {
+        return json({ error: 'Invalid password', success: false, process: "login" }, { status: 401 });
+    }
+
+    
     console.log("Student Login");
-    const token = jwt.sign({ userId: user.userId, email: user.email, user_type: "student" }, JWT_TOKEN, {
+    const token = jwt.sign({ userId: user.id, email: user.email, user_type: "student" }, JWT_TOKEN, {
         expiresIn: '7d',
     });
-    return new Response(JSON.stringify({ success: true, message:"Login successful" }), {
+    return new Response(JSON.stringify({ success: true, message:"Login successful", process: "login" }), {
         status: 200,
         headers: {
             'Set-Cookie': serialize('token', token, {

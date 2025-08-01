@@ -7,7 +7,7 @@
 
     export let data: PageServerData;
 
-    const { score, questionLength, id } = data;
+    const { score, questionLength, id, message, success} = data;
 
     const selectedLab = labsData.filter((d) => d.id == Number(id))[0];
 
@@ -29,8 +29,9 @@
             <h1 class="header kanit" style="font-size: 96px; font-weight: 500; color: #2E7D32;">คุณผ่านการทดสอบ</h1>
 
             <h3 class="score kanit">คุณได้ {score}/{questionLength} คะแนน</h3>
+            <h4 class="message kanit">{message}</h4>
             
-            <button class="to-menu" on:click={() => goto("/lab-menu")}>เมนู</button>
+            <button class="to-menu" on:click={() => goto(`/quiz/${id}/report`)}>ต่อไป</button>
             
         </div>
     </div>

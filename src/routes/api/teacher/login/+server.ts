@@ -12,7 +12,7 @@ export const POST = async ({ request }) => {
 
 	const user = await Teachers.findOne({ email });
 	if (!user || !(await bcrypt.compare(password, user.password))) {
-		return json({ error: 'Invalid email or password', success: false }, { status: 401 });
+		return json({ error: 'Invalid email or password', success: false, process: "login" }, { status: 401 });
 	}
 	console.log("Teacher Login")
 
@@ -22,7 +22,7 @@ export const POST = async ({ request }) => {
 	});
 	
 
-	return new Response(JSON.stringify({ success: true, message:"Login successful" }), {
+	return new Response(JSON.stringify({ success: true, message:"Login successful", process: "login" }), {
 		status: 200,
 		headers: {
 			'Set-Cookie': serialize('token', token, {

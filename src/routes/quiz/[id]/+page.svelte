@@ -6,7 +6,8 @@
     export let data: PageServerData;
     export let labName: string; // For future coding
 
-    const { id } = data;
+
+    const { id, user } = data;
     
     
     const currentLabQuiz = quizLab.filter((data) => data.id == Number(id))[0];
@@ -34,7 +35,7 @@
         console.log(answers)
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async() => {
         // Get all question number
         let questNum = []
         let sortedAnswer = []
@@ -68,10 +69,20 @@
             // Check for the score
             let resultPercentage = (score / questions.length);
 
+            
+            const res = await fetch("/api/student/quiz/score", {
+                method: "POST", 
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ score: score, userId: user.userId, labName: currentLabQuiz.topic, quizId: currentLabQuiz.id})
+            });
+
+            const data = await res.json();
+
+            
             if (resultPercentage < scorePercentage) {
-                goto(`/quiz/${id}/fail?score=${score}&questionLength=${questions.length}`)
+                goto(`/quiz/${id}/fail?score=${score}&questionLength=${questions.length}&success=${data.success}&message=${data.message}`)
             } else {
-                goto(`/quiz/${id}/pass?score=${score}&questionLength=${questions.length}`)
+                goto(`/quiz/${id}/pass?score=${score}&questionLength=${questions.length}&success=${data.success}&message=${data.message}`)
             }
             
 

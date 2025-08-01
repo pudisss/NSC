@@ -6,7 +6,7 @@
 
     export let data: PageServerData;
 
-    const { score, questionLength } = data;
+    const { score, questionLength, message, success, id } = data;
     const goBack = () => history.back();
 </script>
 
@@ -21,9 +21,10 @@
         <div class="container">
             <h1 class="header kanit" style="font-size: 96px; font-weight: 500; color: #D32F2F;">คุณไม่ผ่านการทดสอบ</h1>
             <h3 class="score kanit">คุณได้ {score}/{questionLength} คะแนน</h3>
+            <h4 class="message kanit">{message}</h4>
             <div class="row-button">
-                <button class="do-again-button" on:click={() => goto("/quiz/"+data.id.toString())}>ทำอีก</button>
-                <button class="to-menu" on:click={() => goto("/lab-menu")}>เมนู</button>
+                <button class="do-again-button" on:click={() => goto("/quiz/"+data.id.toString())}>ทำใหม่</button>
+                <button class="to-menu" on:click={() => goto(`/quiz/${id}/report`)}>ต่อไป</button>
             </div>
         </div>
     </div>

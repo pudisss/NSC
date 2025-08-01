@@ -1,9 +1,10 @@
 import type { PageServerLoad } from "./$types";
 
-export const load: PageServerLoad = ({ params }) => {
+export const load: PageServerLoad = ({ params, locals}) => {
     const id = params.id;
 
     return {
-        id
+        id,
+        user: locals.user,
     }
 }

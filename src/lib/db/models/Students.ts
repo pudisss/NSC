@@ -4,6 +4,9 @@ import mongoose, { Document, Model } from 'mongoose';
 interface ScoreQuiz {
     score: number;
     quizId: string;
+    labName: string;
+    report: string;
+    pass: boolean;
 }
 interface IStudent extends Document {
     id: string;
@@ -19,6 +22,14 @@ interface IStudent extends Document {
 
 }
 
+const ScoreSchema = new mongoose.Schema({
+    quizId: { type: String, required: true },
+    score: { type: Number, required: true },
+    labName: { type: String, required: true },
+    report: { type: String, required: false },
+    pass: { type: Boolean, required: true },
+}, { _id: false });
+
 const StudentSchema = new mongoose.Schema<IStudent>({
     id: { type: String, required: true},
     user_type: { type: String, required: true},
@@ -28,15 +39,15 @@ const StudentSchema = new mongoose.Schema<IStudent>({
     surname: { type: String, required: true},
     prefix: { type: String, required: true},
     roomId: { type: String, required: true }, // ✅ correct array syntax
-    scores: [{
-        quizId: { type: String, required: true },
-        score: { type: Number, required: true }
-    }]
+    scores: [ScoreSchema]
     
 });
 
 
 
-const Students: Model<IStudent> = mongoose.models.Students|| mongoose.model<IStudent>('Students', StudentSchema);
- 
+if (mongoose.models.Students) {
+	delete mongoose.models.Students;
+}
+
+const Students: Model<IStudent> = mongoose.model<IStudent>('Students', StudentSchema);
 export default Students;

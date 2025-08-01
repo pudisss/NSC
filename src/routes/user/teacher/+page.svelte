@@ -5,12 +5,7 @@
     let password: string = "";
 
     let switches: number = 0;
-    let output = {
-        process: "",
-        message: "",
-        roomId: "",
-        finished: false,
-    }
+    let output!: { success: boolean, roomId?: string, message?: string, error?: string, process: string};
 
     // General Function
 
@@ -26,12 +21,12 @@
         
 
 		const data = await res.json();
-        output.finished = data.success;
-        output.process = "login";
-        output.message = data.message;
-        
-		console.log(data);
-        goto("/");
+        output = data;
+
+        console.log(data);
+		if (data.success) {
+            goto("/")
+        }
     }
     const register = async() => {
         const roomIdGen = Math.floor(Math.random() * 9000) + 1000;
@@ -42,15 +37,16 @@
 		});
 
 		const data = await res.json();
-        output.finished = data.success;
-        output.process = "register";
-        output.message = data.message;
-        output.roomId = data.roomId;
+        output = data;
+
+        console.log(data);
 
         
 
         
     }
+
+    
 
     // Handle change form
     const handleLogin = () =>  {
@@ -82,15 +78,27 @@
                     <h2 class="header kanit">ลงทะเบียน</h2>
                 </div>
             </div>
-            {#if output.finished}
-                {#if output.process == "login"}
-                    <div class="output-container">
-                        <h2 class="header kanit">{output.message}</h2>
-                    </div>
-                    {:else}
-                        <div class="output-container">
-                            <h2 class="header kanit">{output.message}<br>Your room id is {output.roomId}</h2>
+            {#if output}
+                {#if output.success}
+                    {#if output.process == "login"}
+                        <div class="output-container login-success">
+                            <h2 class="header kanit">{output.message}</h2>
                         </div>
+                        {:else if output.process == "register"}
+                            <div class="output-container register-success">
+                                <h2 class="header kanit">{output.message}<br>Your room id is {output.roomId}</h2>
+                            </div>
+                    {/if}
+                    {:else}
+                        {#if output.process == "login"}
+                            <div class="output-container login-fail fail">
+                                <h2 class="header kanit">{output.error}</h2>
+                            </div>
+                            {:else if output.process == "register"}
+                                <div class="output-container register-fail fail">
+                                    <h2 class="header kanit">{output.error}</h2>
+                                </div>
+                        {/if}
                 {/if}
             {/if}
             {#if switches == 0}
@@ -191,6 +199,11 @@
                         font-size: 1rem;
                         font-weight: 400;
                     }
+                }
+
+                .fail {
+                    border-color:#D32F2F;
+                    color: #D32F2F;
                 }
                 .row-selection {
                     

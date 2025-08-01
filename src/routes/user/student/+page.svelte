@@ -8,10 +8,7 @@
     let email: string = "";
     let password: string = "";
 
-    let output = {
-        process: "",
-        message: "",
-    }
+    let output!: { success: boolean, error?: string, message?: string, process: string};
     let switches: number = 0;
     
     const login = async() => {
@@ -20,17 +17,23 @@
         const res = await fetch('/api/student/login', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ firstname, surname })
+			body: JSON.stringify({ email, password })
 		});
 
 		const data = await res.json();
 
-        alert(data.message);
-        goto("/")
+        if (data.success) {
+            goto("/")
+        }
+        
+        output = data;
+        console.log(output);
+        
+        
 		
     }
     const register = async() => {
-        const roomIdGen = Math.floor(Math.random() * 9000) + 1000;
+        
         const res = await fetch('/api/student/register', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -38,8 +41,9 @@
 		});
 
 		const data = await res.json();
-        output.message = data.message;
-        output.process = "register";
+        
+        output = data;
+        console.log(output);
        
     }
 
@@ -72,6 +76,29 @@
                     <h2 class="header kanit">ลงทะเบียน</h2>
                 </div>
             </div>
+            {#if output}
+                {#if output.success}
+                    {#if output.process == "login"}
+                        <div class="output-container login-success">
+                            <h2 class="header kanit">{output.message}</h2>
+                        </div>
+                        {:else if output.process == "register"}
+                            <div class="output-container register-success">
+                                <h2 class="header kanit">{output.message}</h2>
+                            </div>
+                    {/if}
+                    {:else}
+                        {#if output.process == "login"}
+                            <div class="output-container login-fail fail">
+                                <h2 class="header kanit">{output.error}</h2>
+                            </div>
+                            {:else if output.process == "register"}
+                                <div class="output-container register-fail fail">
+                                    <h2 class="header kanit">{output.error}</h2>
+                                </div>
+                        {/if}
+                {/if}
+            {/if}
             {#if switches == 0}
                 <form on:submit|preventDefault={login} class="form-login">
 
@@ -191,6 +218,11 @@
                         font-size: 1rem;
                         font-weight: 400;
                     }
+                }
+
+                .fail {
+                    border-color:#D32F2F;
+                    color: #D32F2F;
                 }
                 .row-selection {
                     

@@ -7,14 +7,15 @@ import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
 import Teachers from '$lib/db/models/Teacher';
 import Students from '$lib/db/models/Students';
+import { labsData } from '$lib/data/LabData.js';
 
 export const POST = async ({ request }) => {
     const { email, password, firstname, surname, prefix, roomId}: { email: string, password: string, firstname: string, surname: string, prefix: string, roomId: string} = await request.json();
 
 
-    const existingUser = await Teachers.findOne({ email });
+    const existingUser = await Students.findOne({ email });
     if (existingUser) {
-        return json({ error: true, message: 'User already exists' }, { status: 400 });
+        return json({ success: false, error: 'User already exists', process: "register" }, { status: 400 });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -24,12 +25,29 @@ export const POST = async ({ request }) => {
 	// Data student to the students collections
     await Students.create({ email: email, password: hashedPassword, id: userId, user_type: "student", firstname: firstname, surname: surname, prefix: prefix, roomId: roomId});
 
+
+	// Add every single lab info to the user
+
+	const student = await Students.findOne({ id: userId });
+	if (student) {
+		for (let lab of labsData) {
+			student.scores.push({
+				labName: lab.name,
+				score: 0,
+				quizId: lab.quiz_id.toString(),
+				report: "",
+				pass: false, // ✅ Will be saved properly
+			});
+		}
+		await student.save(); // ✅ Schema rules apply here
+	}
+
 	// Add students to the student list in the teacher
 	const teacher = await Teachers.findOne({ roomId: roomId })
 	if (teacher) {
 		await teacher.updateOne({ "$push": {students: userId}})
 	} else {
-		return json({ message: "There's no teacher with this room id registered", error: true})
+		return json({ success: false, error: "There's no teacher with this room id registered", process: "register"})
 	}
 
 	// JWT token
@@ -37,7 +55,7 @@ export const POST = async ({ request }) => {
 		expiresIn: '7d',
 	});
 
-	return new Response(JSON.stringify({ success: true, message: `Register successful.`,}), {
+	return new Response(JSON.stringify({ success: true, message: `Register successful.`, process: "register"}), {
 		status: 200,
 		headers: {
 			'Set-Cookie': serialize('token', token, {
