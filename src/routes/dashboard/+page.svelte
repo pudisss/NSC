@@ -266,7 +266,8 @@
         align-items: center;
         justify-content: center;
         padding: 3rem;
-        overflow: hidden;
+        overflow-x: hidden;
+        
         
         
 
@@ -280,6 +281,8 @@
             align-items: center;
             padding: 2rem;
             z-index: 1;
+            overflow-y: scroll;
+            
 
             .back-button {
                 position: absolute;
@@ -352,6 +355,7 @@
                     display :flex;
                     flex-flow: column nowrap;
                     align-items: flex-start;
+                    overflow-y: scroll;
 
                     .labs {
                         width: 100%;
@@ -391,15 +395,18 @@
                     display: flex;
                     flex-flow: column nowrap;
                     align-items: flex-start;
+                    
 
                     .students {
                         width: 100%;
                         margin-top: 1rem;
                         
+                        
                         display: flex;
                         align-items: flex-start;
                         flex-flow: column nowrap;
                         row-gap: 1rem;
+                        overflow-y:scroll;
 
                         
                         .student-container {

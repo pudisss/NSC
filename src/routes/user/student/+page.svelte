@@ -111,7 +111,7 @@
                         </div>
                         <div class="password">
                             <label class="label kanit" for="password">รหัสผ่าน</label>
-                            <input type="password" bind:value={password} class="kanit password-input" placeholder="ป้อนอีเมลของท่าน">
+                            <input type="password" bind:value={password} class="kanit password-input" placeholder="รหัสผ่าน">
                         </div>
                     </div>
                     
